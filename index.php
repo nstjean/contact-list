@@ -6,8 +6,8 @@
 	// check if submitted
 	if(filter_has_var(INPUT_POST, 'submit')) {
 		// get all form data
-		$name = htmlspecialchars($_POST['name']);
-		$email = htmlspecialchars($_POST['email']);
+		$name = strip_tags($_POST['name']);
+		$email = strip_tags($_POST['email']);
 		$message = htmlspecialchars($_POST['message']);
 
 		if(!empty($email) && !empty($name) && !empty($message)) {
@@ -19,12 +19,14 @@
 				// passed validation, send email
 				$toEmail = 'natalie.stjean@gmail.com';
 				$subject = 'PHP Contact Form From ' . $name;
-				$body = 'Contact Form<br>'.
-					'Name: '.$name.'<br>'.
-					'Email: '.$email.'<br>'.
-					'Message: '.$message;
+				
+				$body = '<h2>Contact Form</h2><br>';
+				$body .= 'Name: '.$name.'<br>';
+				$body .= 'Email: '.$email.'<br>';
+				$body .= 'Message: '.$message;
+
 				$headers = 'MIME-Version: 1.0\r\n';
-				$headers .= 'Content-Type:text/html;charset=UTF-8\r\n';
+				$headers .= 'Content-Type: text/html; charset=ISO-8859-1\r\n';
 				$headers .= 'From: ' . $name . '<'.$email.'>\r\n';
 
 				if(mail($toEmail, $subject, $body, $headers)) {
