@@ -19,10 +19,10 @@
 				// passed validation, send email
 				$toEmail = 'natalie.stjean@gmail.com';
 				$subject = 'PHP Contact Form From ' . $name;
-				$body = 'Contact Form\n'.
-					'Name: '.$name.'\n'.
-					'Email: '.$email.'\n'.
-					'Message: '.$message.'\n';
+				$body = 'Contact Form<br>'.
+					'Name: '.$name.'<br>'.
+					'Email: '.$email.'<br>'.
+					'Message: '.$message;
 				$headers = 'MIME-Version: 1.0\r\n';
 				$headers .= 'Content-Type:text/html;charset=UTF-8\r\n';
 				$headers .= 'From: ' . $name . '<'.$email.'>\r\n';
