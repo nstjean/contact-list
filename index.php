@@ -20,18 +20,22 @@
 				$toEmail = 'natalie.stjean@gmail.com';
 				$subject = 'PHP Contact Form From ' . $name;
 				
-				$body = '<h2>Contact Form</h2><br>';
-				$body .= 'Name: '.$name.'<br>';
-				$body .= 'Email: '.$email.'<br>';
+				$body = '<h2>Contact Form</h2><br>'."\r\n";
+				$body .= 'Name: '.$name.'<br>'."\r\n";
+				$body .= 'Email: '.$email.'<br>'."\r\n";
 				$body .= 'Message: '.$message;
 
-				$headers = 'MIME-Version: 1.0\r\n';
-				$headers .= 'Content-Type: text/html; charset=ISO-8859-1\r\n';
-				$headers .= 'From: ' . $name . '<'.$email.'>\r\n';
+				$headers = [];
+				$headers[] = 'MIME-Version: 1.0';
+				$headers[] = 'Content-Type: text/html; charset=ISO-8859-1';
+				$headers[] = 'From: ' . $name . '<'.$email.'>';
 
 				if(mail($toEmail, $subject, $body, $headers)) {
 					$msg = 'Email has been sent';
 					$msgClass = 'alert-success';
+					$name = '';
+					$email = '';
+					$message = '';
 				} else {
 					$msg = 'Error sending email';
 					$msgClass = 'alert-danger';
